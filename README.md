@@ -6,3 +6,7 @@
 
 ## Modules
 - [LoanCalculator](/03-Modules/LoanCalculator.md)
+
+## Appendix
+- Quarkus Command   
+`mvn io.quarkus:quarkus-maven-plugin:create -DprojectGroupId=org.cfs-lending.com -DprojectArtifactId=loan-calculator -DprojectVersion=1.0.0-SNAPSHOT -Dextensions=kogito-quarkus`
