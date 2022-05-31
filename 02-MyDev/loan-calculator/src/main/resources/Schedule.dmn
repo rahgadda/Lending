@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dmn:definitions xmlns:dmn="http://www.omg.org/spec/DMN/20180521/MODEL/" xmlns="https://kiegroup.org/dmn/_8BF76870-2B33-49F0-963B-6EB09C48AA03" xmlns:feel="http://www.omg.org/spec/DMN/20180521/FEEL/" xmlns:kie="http://www.drools.org/kie/dmn/1.2" xmlns:dmndi="http://www.omg.org/spec/DMN/20180521/DMNDI/" xmlns:di="http://www.omg.org/spec/DMN/20180521/DI/" xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" id="_D75B0C66-2705-4C70-9E62-E6B144F98A70" name="LoanCalculator" typeLanguage="http://www.omg.org/spec/DMN/20180521/FEEL/" namespace="https://kiegroup.org/dmn/_8BF76870-2B33-49F0-963B-6EB09C48AA03">
+  <dmn:extensionElements/>
+  <dmn:itemDefinition id="_2DAFF55C-AC0B-4924-9F58-F18F6D27BDAB" name="LoanDetails" isCollection="false">
+    <dmn:itemComponent id="_F89A45AC-382F-48E9-A24A-AFF38CACC8AD" name="Amount" isCollection="false">
+      <dmn:typeRef>number</dmn:typeRef>
+    </dmn:itemComponent>
+    <dmn:itemComponent id="_F5F41150-A8EE-4C9E-8FC7-1D9DBEF4CE46" name="Rate" isCollection="false">
+      <dmn:typeRef>number</dmn:typeRef>
+    </dmn:itemComponent>
+    <dmn:itemComponent id="_A80192E1-97A7-44A1-BC27-7862674E62D9" name="Term" isCollection="false">
+      <dmn:typeRef>number</dmn:typeRef>
+    </dmn:itemComponent>
+    <dmn:itemComponent id="_2ACD4542-E1FC-4C4E-A400-78C29B2B2084" name="DayCounting" isCollection="false">
+      <dmn:typeRef>string</dmn:typeRef>
+    </dmn:itemComponent>
+    <dmn:itemComponent id="_8FF3F576-AB4A-42D3-A99A-7A3BEE780FC1" name="BillingCycle" isCollection="false">
+      <dmn:typeRef>string</dmn:typeRef>
+    </dmn:itemComponent>
+  </dmn:itemDefinition>
+  <dmndi:DMNDI>
+    <dmndi:DMNDiagram id="_1DB7AE96-9851-4D3C-B8FC-0B4676FCD776" name="DRG">
+      <di:extension>
+        <kie:ComponentsWidthsExtension/>
+      </di:extension>
+    </dmndi:DMNDiagram>
+  </dmndi:DMNDI>
+</dmn:definitions>
