@@ -5,4 +5,4 @@
 - We will discuss concepts of each building block and create module in excel and replicate excel as DMN process using [Kogito](https://kogito.kie.org/).
 
 ## Modules
-- 
+- [LoanCalculator](/03-Modules/LoanCalculator.md)
