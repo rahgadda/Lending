@@ -103,7 +103,7 @@
               <name>1|1</name>
               <type>GIVEN</type>
             </expressionIdentifier>
-            <rawValue class="string">Rahul</rawValue>
+            <rawValue class="string">"Rahul"</rawValue>
           </FactMappingValue>
           <FactMappingValue>
             <factIdentifier>
@@ -114,7 +114,7 @@
               <name>1|2</name>
               <type>EXPECT</type>
             </expressionIdentifier>
-            <rawValue class="string">Hello Rahul</rawValue>
+            <rawValue class="string">"Hello Rahul"</rawValue>
           </FactMappingValue>
           <FactMappingValue>
             <factIdentifier>
@@ -151,7 +151,7 @@
               <name>1|1</name>
               <type>GIVEN</type>
             </expressionIdentifier>
-            <rawValue class="string">World</rawValue>
+            <rawValue class="string">"World"</rawValue>
           </FactMappingValue>
           <FactMappingValue>
             <factIdentifier>
@@ -162,7 +162,7 @@
               <name>1|2</name>
               <type>EXPECT</type>
             </expressionIdentifier>
-            <rawValue class="string">Hello World</rawValue>
+            <rawValue class="string">"Hello World"</rawValue>
           </FactMappingValue>
           <FactMappingValue>
             <factIdentifier>
