@@ -1,1 +1,22 @@
-POST https://rahgadda-lending-p75749p7f9rv5-8080.githubpreview.dev/
+### HelloWorld - JSON
+POST http://localhost:8080/HelloWorld/
+Content-Type: application/json
+
+{
+    "InputDetails": {
+        "Name": "Rahul"
+    }
+}
+
+### HelloWorld - Detailed Execution
+POST http://localhost:8080/HelloWorld/dmnresult
+Content-Type: application/json
+
+{
+    "InputDetails": {
+        "Name": "Rahul"
+    }
+}
+
+### DMN Definition
+GET http://localhost:8080/HelloWorld
