@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dmn:definitions xmlns:dmn="http://www.omg.org/spec/DMN/20180521/MODEL/" xmlns="https://kiegroup.org/dmn/_B1FD4C2F-09CE-45FB-80FB-8D7EFD422F09" xmlns:feel="http://www.omg.org/spec/DMN/20180521/FEEL/" xmlns:kie="http://www.drools.org/kie/dmn/1.2" xmlns:dmndi="http://www.omg.org/spec/DMN/20180521/DMNDI/" xmlns:di="http://www.omg.org/spec/DMN/20180521/DI/" xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" id="_26BAD84E-927B-4A2E-80ED-9BC8F0D8E6E5" name="Untitled" typeLanguage="http://www.omg.org/spec/DMN/20180521/FEEL/" namespace="https://kiegroup.org/dmn/_B1FD4C2F-09CE-45FB-80FB-8D7EFD422F09">
+  <dmn:extensionElements/>
+  <dmn:itemDefinition id="_FCC1C234-E493-4923-A78B-3BD5F801D66D" name="Fibonacci" isCollection="false">
+    <dmn:itemComponent id="_143623D5-0B6D-4A78-9AB8-52F522D0F556" name="Numbers" isCollection="false">
+      <dmn:typeRef>number</dmn:typeRef>
+    </dmn:itemComponent>
+  </dmn:itemDefinition>
+  <dmn:inputData id="_8C603A1B-0522-47A4-A8BC-5078061DCDFB" name="NElement">
+    <dmn:extensionElements/>
+    <dmn:variable id="_C394E4E4-A326-47A0-8AAB-CD9462BFAA28" name="NElement" typeRef="number"/>
+  </dmn:inputData>
+  <dmn:decision id="_F41DD0B3-5264-4C9C-881C-556F9E27D6AC" name="Fibonacci">
+    <dmn:extensionElements/>
+    <dmn:variable id="_900FD517-1B43-4B27-BDE7-B38EF88E588D" name="Fibonacci" typeRef="Fibonacci"/>
+    <dmn:informationRequirement id="_AE747DE2-CD39-4528-B5D7-EFDF4A88840B">
+      <dmn:requiredInput href="#_8C603A1B-0522-47A4-A8BC-5078061DCDFB"/>
+    </dmn:informationRequirement>
+    <dmn:knowledgeRequirement id="_7935B6BC-3B0E-4CB2-BBEF-D37AB2ACD125">
+      <dmn:requiredKnowledge href="#_CEC9E808-188E-4C19-9A7D-3D81A20E4480"/>
+    </dmn:knowledgeRequirement>
+    <dmn:literalExpression id="_7A23C303-8C0D-4DE5-A14B-0D392C35D312">
+      <dmn:text>FibonacciNumberGenerator(1,1,NElement,[])</dmn:text>
+    </dmn:literalExpression>
+  </dmn:decision>
+  <dmn:businessKnowledgeModel id="_CEC9E808-188E-4C19-9A7D-3D81A20E4480" name="FibonacciNumberGenerator">
+    <dmn:extensionElements/>
+    <dmn:variable id="_05EE196B-0A6B-4767-96CC-0AF40228C35A" name="FibonacciNumberGenerator" typeRef="Fibonacci"/>
+    <dmn:encapsulatedLogic id="_FBF5E880-2D5D-43E8-8902-972A37D93F97" kind="FEEL">
+      <dmn:formalParameter id="_7B02DD04-3963-4AC7-B7B7-E176C71D53C6" name="PreviousValue" typeRef="number"/>
+      <dmn:formalParameter id="_24B42137-D870-45D2-84D6-1DEF5E6FEDC5" name="CurrentValue" typeRef="number"/>
+      <dmn:formalParameter id="_2A15346C-7380-45B4-9B49-5EC02DCD08BA" name="MaxValue" typeRef="number"/>
+      <dmn:formalParameter id="_7655DDF5-1822-4F72-A48C-0B20E0106738" name="Fibonacci"/>
+      <dmn:context id="_1616632F-0F56-41A6-B460-994CB92BF222">
+        <dmn:contextEntry>
+          <dmn:variable id="_07C68619-A8CB-4DAA-B37D-47D1A5BA1FCA" name="TempValue" typeRef="number"/>
+          <dmn:literalExpression id="_7C294702-E775-4437-8F72-F03571D45950">
+            <dmn:text>PreviousValue</dmn:text>
+          </dmn:literalExpression>
+        </dmn:contextEntry>
+        <dmn:contextEntry>
+          <dmn:variable id="_758C844F-61E5-4A92-8D56-AEEDCDE61D81" name="PreviousValue" typeRef="number"/>
+          <dmn:literalExpression id="_758C844F-61E5-4A92-8D56-AEEDCDE61D81">
+            <dmn:text>CurrentValue</dmn:text>
+          </dmn:literalExpression>
+        </dmn:contextEntry>
+        <dmn:contextEntry>
+          <dmn:variable id="_48706382-4AA8-48C0-87D9-924B7322082F" name="CurrentValue" typeRef="number"/>
+          <dmn:literalExpression id="_48706382-4AA8-48C0-87D9-924B7322082F">
+            <dmn:text>TempValue+CurrentValue</dmn:text>
+          </dmn:literalExpression>
+        </dmn:contextEntry>
+        <dmn:contextEntry>
+          <dmn:variable id="_1DF8264B-5B55-40D3-8664-83C34E84EA24" name="Fibonacci" typeRef="Fibonacci"/>
+          <dmn:literalExpression id="_DF2BD691-D7DF-4E25-B8A4-6E6216ED2BC5">
+            <dmn:text>append(Fibonacci, TempValue)</dmn:text>
+          </dmn:literalExpression>
+        </dmn:contextEntry>
+        <dmn:contextEntry>
+          <dmn:literalExpression id="_B551ADB3-309E-4650-BE1A-3BDF3B08DAFA">
+            <dmn:text>if TempValue &gt;= MaxValue then
+Fibonacci
+else
+FibonacciNumberGenerator(PreviousValue, CurrentValue, MaxValue, Fibonacci)
+
+</dmn:text>
+          </dmn:literalExpression>
+        </dmn:contextEntry>
+      </dmn:context>
+    </dmn:encapsulatedLogic>
+  </dmn:businessKnowledgeModel>
+  <dmndi:DMNDI>
+    <dmndi:DMNDiagram id="_35DC46D1-536F-47DD-91C1-40950054EE44" name="DRG">
+      <di:extension>
+        <kie:ComponentsWidthsExtension>
+          <kie:ComponentWidths dmnElementRef="_7A23C303-8C0D-4DE5-A14B-0D392C35D312">
+            <kie:width>584</kie:width>
+          </kie:ComponentWidths>
+          <kie:ComponentWidths dmnElementRef="_1616632F-0F56-41A6-B460-994CB92BF222">
+            <kie:width>50</kie:width>
+            <kie:width>141</kie:width>
+            <kie:width>520</kie:width>
+          </kie:ComponentWidths>
+          <kie:ComponentWidths dmnElementRef="_7C294702-E775-4437-8F72-F03571D45950">
+            <kie:width>520</kie:width>
+          </kie:ComponentWidths>
+          <kie:ComponentWidths dmnElementRef="_758C844F-61E5-4A92-8D56-AEEDCDE61D81">
+            <kie:width>520</kie:width>
+          </kie:ComponentWidths>
+          <kie:ComponentWidths dmnElementRef="_48706382-4AA8-48C0-87D9-924B7322082F">
+            <kie:width>520</kie:width>
+          </kie:ComponentWidths>
+          <kie:ComponentWidths dmnElementRef="_DF2BD691-D7DF-4E25-B8A4-6E6216ED2BC5">
+            <kie:width>520</kie:width>
+          </kie:ComponentWidths>
+          <kie:ComponentWidths dmnElementRef="_B551ADB3-309E-4650-BE1A-3BDF3B08DAFA">
+            <kie:width>520</kie:width>
+          </kie:ComponentWidths>
+          <kie:ComponentWidths dmnElementRef="_FBF5E880-2D5D-43E8-8902-972A37D93F97">
+            <kie:width>50</kie:width>
+            <kie:width>731</kie:width>
+          </kie:ComponentWidths>
+        </kie:ComponentsWidthsExtension>
+      </di:extension>
+      <dmndi:DMNShape id="dmnshape-drg-_8C603A1B-0522-47A4-A8BC-5078061DCDFB" dmnElementRef="_8C603A1B-0522-47A4-A8BC-5078061DCDFB" isCollapsed="false">
+        <dmndi:DMNStyle>
+          <dmndi:FillColor red="255" green="255" blue="255"/>
+          <dmndi:StrokeColor red="0" green="0" blue="0"/>
+          <dmndi:FontColor red="0" green="0" blue="0"/>
+        </dmndi:DMNStyle>
+        <dc:Bounds x="741" y="277" width="100" height="50"/>
+        <dmndi:DMNLabel/>
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="dmnshape-drg-_F41DD0B3-5264-4C9C-881C-556F9E27D6AC" dmnElementRef="_F41DD0B3-5264-4C9C-881C-556F9E27D6AC" isCollapsed="false">
+        <dmndi:DMNStyle>
+          <dmndi:FillColor red="255" green="255" blue="255"/>
+          <dmndi:StrokeColor red="0" green="0" blue="0"/>
+          <dmndi:FontColor red="0" green="0" blue="0"/>
+        </dmndi:DMNStyle>
+        <dc:Bounds x="741" y="162" width="100" height="50"/>
+        <dmndi:DMNLabel/>
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="dmnshape-drg-_CEC9E808-188E-4C19-9A7D-3D81A20E4480" dmnElementRef="_CEC9E808-188E-4C19-9A7D-3D81A20E4480" isCollapsed="false">
+        <dmndi:DMNStyle>
+          <dmndi:FillColor red="255" green="255" blue="255"/>
+          <dmndi:StrokeColor red="0" green="0" blue="0"/>
+          <dmndi:FontColor red="0" green="0" blue="0"/>
+        </dmndi:DMNStyle>
+        <dc:Bounds x="398" y="161" width="188" height="50"/>
+        <dmndi:DMNLabel/>
+      </dmndi:DMNShape>
+      <dmndi:DMNEdge id="dmnedge-drg-_AE747DE2-CD39-4528-B5D7-EFDF4A88840B" dmnElementRef="_AE747DE2-CD39-4528-B5D7-EFDF4A88840B">
+        <di:waypoint x="791" y="302"/>
+        <di:waypoint x="791" y="212"/>
+      </dmndi:DMNEdge>
+      <dmndi:DMNEdge id="dmnedge-drg-_7935B6BC-3B0E-4CB2-BBEF-D37AB2ACD125" dmnElementRef="_7935B6BC-3B0E-4CB2-BBEF-D37AB2ACD125">
+        <di:waypoint x="492" y="186"/>
+        <di:waypoint x="741" y="187"/>
+      </dmndi:DMNEdge>
+    </dmndi:DMNDiagram>
+  </dmndi:DMNDI>
+</dmn:definitions>

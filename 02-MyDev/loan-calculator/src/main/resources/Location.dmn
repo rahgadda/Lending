@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dmn:definitions xmlns:dmn="http://www.omg.org/spec/DMN/20180521/MODEL/" xmlns="https://kiegroup.org/dmn/_88CD6671-845E-4A07-A318-D6AE46940CEB" xmlns:feel="http://www.omg.org/spec/DMN/20180521/FEEL/" xmlns:kie="http://www.drools.org/kie/dmn/1.2" xmlns:dmndi="http://www.omg.org/spec/DMN/20180521/DMNDI/" xmlns:di="http://www.omg.org/spec/DMN/20180521/DI/" xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" id="_3D992435-3FC9-4DF3-9D7F-53E8E34BED70" name="Untitled" typeLanguage="http://www.omg.org/spec/DMN/20180521/FEEL/" namespace="https://kiegroup.org/dmn/_88CD6671-845E-4A07-A318-D6AE46940CEB">
+  <dmn:extensionElements/>
+  <dmn:inputData id="_1CE294C2-3A35-47BB-9F69-FD3FBB67CA6A" name="ZipCode">
+    <dmn:extensionElements/>
+    <dmn:variable id="_63B5478D-D530-4945-9A86-C033E5557F7C" name="ZipCode" typeRef="number"/>
+  </dmn:inputData>
+  <dmn:decision id="_D4B6290B-341C-409A-AB11-509CC1CA62D2" name="Location">
+    <dmn:extensionElements/>
+    <dmn:variable id="_C9B7A201-C216-491D-A116-507059FC6CD0" name="Location" typeRef="string"/>
+    <dmn:informationRequirement id="_92EA6CE8-A025-4DF5-8A66-557E7053DFEB">
+      <dmn:requiredInput href="#_1CE294C2-3A35-47BB-9F69-FD3FBB67CA6A"/>
+    </dmn:informationRequirement>
+    <dmn:decisionTable id="_5E5C6B61-FCB9-4ABA-B611-78E5D6E00A7A" hitPolicy="UNIQUE" preferredOrientation="Rule-as-Row">
+      <dmn:input id="_635010B0-AB59-449F-A843-BC00210C515D">
+        <dmn:inputExpression id="_3FA8F2A5-1263-4357-A83F-FE38A7579C06" typeRef="number">
+          <dmn:text>ZipCode</dmn:text>
+        </dmn:inputExpression>
+      </dmn:input>
+      <dmn:output id="_0276428C-29C4-48EE-B8B3-50D0E38AB012"/>
+      <dmn:annotation name="Description"/>
+      <dmn:rule id="_F949A961-9B15-40DA-B977-368BAAD00AB6">
+        <dmn:inputEntry id="_0D668797-DB67-4058-8BBA-C98BD4723801">
+          <dmn:text>(5000..6000)</dmn:text>
+        </dmn:inputEntry>
+        <dmn:outputEntry id="_66BDD750-AA6A-44AC-80FF-F0D474C2758C">
+          <dmn:text>"Hyderabad"</dmn:text>
+        </dmn:outputEntry>
+        <dmn:annotationEntry>
+          <dmn:text/>
+        </dmn:annotationEntry>
+      </dmn:rule>
+    </dmn:decisionTable>
+  </dmn:decision>
+  <dmndi:DMNDI>
+    <dmndi:DMNDiagram id="_BE81F379-E826-4EB9-AB86-6D362914C965" name="DRG">
+      <di:extension>
+        <kie:ComponentsWidthsExtension>
+          <kie:ComponentWidths dmnElementRef="_5E5C6B61-FCB9-4ABA-B611-78E5D6E00A7A">
+            <kie:width>50</kie:width>
+            <kie:width>209</kie:width>
+            <kie:width>100</kie:width>
+            <kie:width>100</kie:width>
+          </kie:ComponentWidths>
+        </kie:ComponentsWidthsExtension>
+      </di:extension>
+      <dmndi:DMNShape id="dmnshape-drg-_1CE294C2-3A35-47BB-9F69-FD3FBB67CA6A" dmnElementRef="_1CE294C2-3A35-47BB-9F69-FD3FBB67CA6A" isCollapsed="false">
+        <dmndi:DMNStyle>
+          <dmndi:FillColor red="255" green="255" blue="255"/>
+          <dmndi:StrokeColor red="0" green="0" blue="0"/>
+          <dmndi:FontColor red="0" green="0" blue="0"/>
+        </dmndi:DMNStyle>
+        <dc:Bounds x="934" y="345" width="100" height="50"/>
+        <dmndi:DMNLabel/>
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="dmnshape-drg-_D4B6290B-341C-409A-AB11-509CC1CA62D2" dmnElementRef="_D4B6290B-341C-409A-AB11-509CC1CA62D2" isCollapsed="false">
+        <dmndi:DMNStyle>
+          <dmndi:FillColor red="255" green="255" blue="255"/>
+          <dmndi:StrokeColor red="0" green="0" blue="0"/>
+          <dmndi:FontColor red="0" green="0" blue="0"/>
+        </dmndi:DMNStyle>
+        <dc:Bounds x="935" y="154" width="100" height="50"/>
+        <dmndi:DMNLabel/>
+      </dmndi:DMNShape>
+      <dmndi:DMNEdge id="dmnedge-drg-_92EA6CE8-A025-4DF5-8A66-557E7053DFEB" dmnElementRef="_92EA6CE8-A025-4DF5-8A66-557E7053DFEB">
+        <di:waypoint x="984" y="370"/>
+        <di:waypoint x="985" y="204"/>
+      </dmndi:DMNEdge>
+    </dmndi:DMNDiagram>
+  </dmndi:DMNDI>
+</dmn:definitions>
