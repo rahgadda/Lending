@@ -1,4 +1,4 @@
-### HelloWorld - JSON
+### HelloWorld
 POST http://localhost:8080/HelloWorld/
 Content-Type: application/json
 
@@ -20,3 +20,17 @@ Content-Type: application/json
 
 ### DMN Definition
 GET http://localhost:8080/HelloWorld
+
+
+### Fibonacci 
+POST http://localhost:8080/Fibonacci/
+Content-Type: application/json
+
+{"NElement":9}
+
+
+### Location
+POST http://localhost:8080/Location/
+Content-Type: application/json
+
+{"ZipCode":5500}

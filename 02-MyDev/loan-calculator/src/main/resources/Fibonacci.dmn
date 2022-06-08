@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<dmn:definitions xmlns:dmn="http://www.omg.org/spec/DMN/20180521/MODEL/" xmlns="https://kiegroup.org/dmn/_B1FD4C2F-09CE-45FB-80FB-8D7EFD422F09" xmlns:feel="http://www.omg.org/spec/DMN/20180521/FEEL/" xmlns:kie="http://www.drools.org/kie/dmn/1.2" xmlns:dmndi="http://www.omg.org/spec/DMN/20180521/DMNDI/" xmlns:di="http://www.omg.org/spec/DMN/20180521/DI/" xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" id="_26BAD84E-927B-4A2E-80ED-9BC8F0D8E6E5" name="Untitled" typeLanguage="http://www.omg.org/spec/DMN/20180521/FEEL/" namespace="https://kiegroup.org/dmn/_B1FD4C2F-09CE-45FB-80FB-8D7EFD422F09">
+<dmn:definitions xmlns:dmn="http://www.omg.org/spec/DMN/20180521/MODEL/" xmlns="https://kiegroup.org/dmn/_B1FD4C2F-09CE-45FB-80FB-8D7EFD422F09" xmlns:feel="http://www.omg.org/spec/DMN/20180521/FEEL/" xmlns:kie="http://www.drools.org/kie/dmn/1.2" xmlns:dmndi="http://www.omg.org/spec/DMN/20180521/DMNDI/" xmlns:di="http://www.omg.org/spec/DMN/20180521/DI/" xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" id="_26BAD84E-927B-4A2E-80ED-9BC8F0D8E6E5" name="Fibonacci" typeLanguage="http://www.omg.org/spec/DMN/20180521/FEEL/" namespace="https://kiegroup.org/dmn/_B1FD4C2F-09CE-45FB-80FB-8D7EFD422F09">
   <dmn:extensionElements/>
   <dmn:itemDefinition id="_FCC1C234-E493-4923-A78B-3BD5F801D66D" name="Fibonacci" isCollection="false">
     <dmn:itemComponent id="_143623D5-0B6D-4A78-9AB8-52F522D0F556" name="Numbers" isCollection="false">
@@ -39,13 +39,13 @@
           </dmn:literalExpression>
         </dmn:contextEntry>
         <dmn:contextEntry>
-          <dmn:variable id="_758C844F-61E5-4A92-8D56-AEEDCDE61D81" name="PreviousValue" typeRef="number"/>
+          <dmn:variable id="_758C844F-61E5-4A92-8D56-AEEDCDE61D82" name="PreviousValue" typeRef="number"/>
           <dmn:literalExpression id="_758C844F-61E5-4A92-8D56-AEEDCDE61D81">
             <dmn:text>CurrentValue</dmn:text>
           </dmn:literalExpression>
         </dmn:contextEntry>
         <dmn:contextEntry>
-          <dmn:variable id="_48706382-4AA8-48C0-87D9-924B7322082F" name="CurrentValue" typeRef="number"/>
+          <dmn:variable id="_48706382-4AA8-48C0-87D9-924B7322084F" name="CurrentValue" typeRef="number"/>
           <dmn:literalExpression id="_48706382-4AA8-48C0-87D9-924B7322082F">
             <dmn:text>TempValue+CurrentValue</dmn:text>
           </dmn:literalExpression>
