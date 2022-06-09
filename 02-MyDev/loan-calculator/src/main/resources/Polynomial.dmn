@@ -3,7 +3,7 @@
   <dmn:extensionElements/>
   <dmn:businessKnowledgeModel id="_811E443E-D538-47FD-8214-B7A18740101A" name="GetPolynomial">
     <dmn:extensionElements/>
-    <dmn:variable id="_405BBDFB-6D3A-4C29-911A-1C602C1EC4AA" name="GetPolynomial" typeRef="boolean"/>
+    <dmn:variable id="_405BBDFB-6D3A-4C29-911A-1C602C1EC4AA" name="GetPolynomial" typeRef="string"/>
     <dmn:encapsulatedLogic id="_B142CBCF-8016-4098-B567-1E0749979515" kind="FEEL">
       <dmn:formalParameter id="_C4B741FD-E5D2-4604-83C2-3148FEB7BBD0" name="Data" typeRef="string"/>
       <dmn:formalParameter id="_EC71A158-0E9F-4475-93F0-032494931CA1" name="Index" typeRef="number"/>
