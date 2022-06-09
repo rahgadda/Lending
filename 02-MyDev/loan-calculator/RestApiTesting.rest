@@ -45,3 +45,11 @@ Content-Type: application/json
     "Cycle": "A",
     "Tenure": 2
 }
+
+### Polynomial
+POST http://localhost:8080/Polynomial/
+Content-Type: application/json
+
+{
+    "Data": "lull"
+}

@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dmn:definitions xmlns:dmn="http://www.omg.org/spec/DMN/20180521/MODEL/" xmlns="https://kiegroup.org/dmn/_DC40BC4E-7DA4-4ED1-968F-C2CA903A4EA6" xmlns:feel="http://www.omg.org/spec/DMN/20180521/FEEL/" xmlns:kie="http://www.drools.org/kie/dmn/1.2" xmlns:dmndi="http://www.omg.org/spec/DMN/20180521/DMNDI/" xmlns:di="http://www.omg.org/spec/DMN/20180521/DI/" xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" id="_D35A2A82-0353-47F9-BDA2-D65674828BE0" name="Polynomial" typeLanguage="http://www.omg.org/spec/DMN/20180521/FEEL/" namespace="https://kiegroup.org/dmn/_DC40BC4E-7DA4-4ED1-968F-C2CA903A4EA6">
+  <dmn:extensionElements/>
+  <dmn:businessKnowledgeModel id="_811E443E-D538-47FD-8214-B7A18740101A" name="GetPolynomial">
+    <dmn:extensionElements/>
+    <dmn:variable id="_405BBDFB-6D3A-4C29-911A-1C602C1EC4AA" name="GetPolynomial" typeRef="boolean"/>
+    <dmn:encapsulatedLogic id="_B142CBCF-8016-4098-B567-1E0749979515" kind="FEEL">
+      <dmn:formalParameter id="_C4B741FD-E5D2-4604-83C2-3148FEB7BBD0" name="Data" typeRef="string"/>
+      <dmn:formalParameter id="_EC71A158-0E9F-4475-93F0-032494931CA1" name="Index" typeRef="number"/>
+      <dmn:formalParameter id="_2C90ABE4-67B5-4332-A21F-BB39BD93F613" name="ReverseData" typeRef="string"/>
+      <dmn:context id="_901EDB08-2CD1-490C-94CD-74F14CFE5733">
+        <dmn:contextEntry>
+          <dmn:variable id="_82145E58-54DD-4657-B040-738D938ADFD3" name="Index" typeRef="number"/>
+          <dmn:literalExpression id="_745CAF7D-568C-4790-9A9B-8DAD14A830BF">
+            <dmn:text>if Index = null or Index = 0 then
+ string length(Data)
+else
+Index -1</dmn:text>
+          </dmn:literalExpression>
+        </dmn:contextEntry>
+        <dmn:contextEntry>
+          <dmn:variable id="_BEF5586A-5D91-4A54-B71F-EB0D4DD635FC" name="ReverseData" typeRef="string"/>
+          <dmn:literalExpression id="_D08558F0-F2E6-472F-92A2-CAF71B9394E6">
+            <dmn:text>substring(Data,-Index,1)+ReverseData</dmn:text>
+          </dmn:literalExpression>
+        </dmn:contextEntry>
+        <dmn:contextEntry>
+          <dmn:literalExpression id="_0C5C9384-9D77-4EDE-9753-7D279D062727">
+            <dmn:text>if Index =1 then
+ReverseData
+else
+GetPolynomial(Data, Index, ReverseData)</dmn:text>
+          </dmn:literalExpression>
+        </dmn:contextEntry>
+      </dmn:context>
+    </dmn:encapsulatedLogic>
+  </dmn:businessKnowledgeModel>
+  <dmn:decision id="_04EEEE51-1898-4CF1-B059-E7D98045AE1A" name="IsPolynomial">
+    <dmn:extensionElements/>
+    <dmn:variable id="_568C38A4-8A88-47F9-96FB-5258D09DC4C4" name="IsPolynomial" typeRef="boolean"/>
+    <dmn:informationRequirement id="_60A77911-D7D6-4B43-864C-796E6451A513">
+      <dmn:requiredInput href="#_DE4C462D-7273-4844-BA87-EAC7E7C98FFB"/>
+    </dmn:informationRequirement>
+    <dmn:knowledgeRequirement id="_6CF64472-BB79-4B4E-9AD4-23B1DF67EFE0">
+      <dmn:requiredKnowledge href="#_811E443E-D538-47FD-8214-B7A18740101A"/>
+    </dmn:knowledgeRequirement>
+    <dmn:literalExpression id="_747FE519-2CDD-41E8-8009-AFB61D2EE9B1">
+      <dmn:text>GetPolynomial(Data,null,"")=Data</dmn:text>
+    </dmn:literalExpression>
+  </dmn:decision>
+  <dmn:inputData id="_DE4C462D-7273-4844-BA87-EAC7E7C98FFB" name="Data">
+    <dmn:extensionElements/>
+    <dmn:variable id="_6F7652BF-97FE-4A05-BEF7-B94108610FB9" name="Data" typeRef="string"/>
+  </dmn:inputData>
+  <dmndi:DMNDI>
+    <dmndi:DMNDiagram id="_65BDDD2A-DC8B-4F49-B79F-EE626826C0BB" name="DRG">
+      <di:extension>
+        <kie:ComponentsWidthsExtension>
+          <kie:ComponentWidths dmnElementRef="_901EDB08-2CD1-490C-94CD-74F14CFE5733">
+            <kie:width>50</kie:width>
+            <kie:width>100</kie:width>
+            <kie:width>970</kie:width>
+          </kie:ComponentWidths>
+          <kie:ComponentWidths dmnElementRef="_745CAF7D-568C-4790-9A9B-8DAD14A830BF">
+            <kie:width>970</kie:width>
+          </kie:ComponentWidths>
+          <kie:ComponentWidths dmnElementRef="_D08558F0-F2E6-472F-92A2-CAF71B9394E6">
+            <kie:width>970</kie:width>
+          </kie:ComponentWidths>
+          <kie:ComponentWidths dmnElementRef="_0C5C9384-9D77-4EDE-9753-7D279D062727">
+            <kie:width>970</kie:width>
+          </kie:ComponentWidths>
+          <kie:ComponentWidths dmnElementRef="_B142CBCF-8016-4098-B567-1E0749979515">
+            <kie:width>50</kie:width>
+            <kie:width>1140</kie:width>
+          </kie:ComponentWidths>
+          <kie:ComponentWidths dmnElementRef="_747FE519-2CDD-41E8-8009-AFB61D2EE9B1">
+            <kie:width>300</kie:width>
+          </kie:ComponentWidths>
+        </kie:ComponentsWidthsExtension>
+      </di:extension>
+      <dmndi:DMNShape id="dmnshape-drg-_811E443E-D538-47FD-8214-B7A18740101A" dmnElementRef="_811E443E-D538-47FD-8214-B7A18740101A" isCollapsed="false">
+        <dmndi:DMNStyle>
+          <dmndi:FillColor red="255" green="255" blue="255"/>
+          <dmndi:StrokeColor red="0" green="0" blue="0"/>
+          <dmndi:FontColor red="0" green="0" blue="0"/>
+        </dmndi:DMNStyle>
+        <dc:Bounds x="541" y="150" width="100" height="50"/>
+        <dmndi:DMNLabel/>
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="dmnshape-drg-_04EEEE51-1898-4CF1-B059-E7D98045AE1A" dmnElementRef="_04EEEE51-1898-4CF1-B059-E7D98045AE1A" isCollapsed="false">
+        <dmndi:DMNStyle>
+          <dmndi:FillColor red="255" green="255" blue="255"/>
+          <dmndi:StrokeColor red="0" green="0" blue="0"/>
+          <dmndi:FontColor red="0" green="0" blue="0"/>
+        </dmndi:DMNStyle>
+        <dc:Bounds x="752" y="151" width="100" height="50"/>
+        <dmndi:DMNLabel/>
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="dmnshape-drg-_DE4C462D-7273-4844-BA87-EAC7E7C98FFB" dmnElementRef="_DE4C462D-7273-4844-BA87-EAC7E7C98FFB" isCollapsed="false">
+        <dmndi:DMNStyle>
+          <dmndi:FillColor red="255" green="255" blue="255"/>
+          <dmndi:StrokeColor red="0" green="0" blue="0"/>
+          <dmndi:FontColor red="0" green="0" blue="0"/>
+        </dmndi:DMNStyle>
+        <dc:Bounds x="751" y="288" width="100" height="50"/>
+        <dmndi:DMNLabel/>
+      </dmndi:DMNShape>
+      <dmndi:DMNEdge id="dmnedge-drg-_60A77911-D7D6-4B43-864C-796E6451A513" dmnElementRef="_60A77911-D7D6-4B43-864C-796E6451A513">
+        <di:waypoint x="801" y="313"/>
+        <di:waypoint x="802" y="201"/>
+      </dmndi:DMNEdge>
+      <dmndi:DMNEdge id="dmnedge-drg-_6CF64472-BB79-4B4E-9AD4-23B1DF67EFE0" dmnElementRef="_6CF64472-BB79-4B4E-9AD4-23B1DF67EFE0">
+        <di:waypoint x="591" y="175"/>
+        <di:waypoint x="752" y="176"/>
+      </dmndi:DMNEdge>
+    </dmndi:DMNDiagram>
+  </dmndi:DMNDI>
+</dmn:definitions>
