@@ -34,3 +34,14 @@ POST http://localhost:8080/Location/
 Content-Type: application/json
 
 {"ZipCode":5500}
+
+### DateOperations
+POST http://localhost:8080/DateOperations/
+Content-Type: application/json
+
+{
+    "FromDate": "2022-06-01",
+    "ToDate": "2022-06-09",
+    "Cycle": "A",
+    "Tenure": 2
+}
