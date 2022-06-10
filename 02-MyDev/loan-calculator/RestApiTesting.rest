@@ -96,3 +96,21 @@ Content-Type: application/json
 		"ActualSpeed": 200
 	}
 }
+
+### LoanCalculator
+POST http://localhost:8080/LoanCalculator/
+Content-Type: application/json
+
+{
+    "LoanDetails": {
+        "BillingCycle": "Monthly",
+        "FirstPaymentDt": "2020-03-01",
+        "AmtFinanced": 12000,
+        "Term": 20,
+        "Rate": 10,
+        "ContractDt": "2020-01-21"
+    },
+    "ConfigDetails": {
+        "DayCounting": "30/360"
+    }
+}
