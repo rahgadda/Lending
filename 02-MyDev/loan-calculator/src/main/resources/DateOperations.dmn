@@ -25,7 +25,7 @@
       <dmn:requiredInput href="#_312829CB-6BC1-4EBF-8F3B-1E754E455B19"/>
     </dmn:informationRequirement>
     <dmn:literalExpression id="_CBAB8960-E946-4699-B511-62A6CEA503E4">
-      <dmn:text>ToDate-FromDate</dmn:text>
+      <dmn:text>duration(ToDate-FromDate).days</dmn:text>
     </dmn:literalExpression>
   </dmn:decision>
   <dmn:decision id="_8B04C9D2-C2B4-4521-8E16-1811FFD68F21" name="AddDates">
