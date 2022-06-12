@@ -125,6 +125,7 @@ Content-Type: application/json
 ### https://www.iotafinance.com/en/Date-Calculator.html
 ### https://support.microsoft.com/en-us/office/yearfrac-function-3844141e-c76d-4143-82b6-208454ddc6a8#:~:text=Description,assign%20to%20a%20specific%20term.
 ### https://stackoverflow.com/questions/43355292/replicating-yearfrac-function-from-excel-in-python
+
 ### 30US/360 - 3.08611
 POST http://localhost:8080/YearFact/
 Content-Type: application/json
