@@ -1,3 +1,6 @@
+### https://documentation.signavio.com/suite/en-us/Content/process-manager/userguide/dmn-literal-expressions.htm#day
+### https://docs.camunda.io/docs/components/modeler/feel/what-is-feel/
+
 ### HelloWorld
 POST http://localhost:8080/HelloWorld/
 Content-Type: application/json
@@ -113,4 +116,75 @@ Content-Type: application/json
     "ConfigDetails": {
         "DayCounting": "30/360"
     }
+}
+
+### Yearfraction
+### https://stackoverflow.com/questions/43355292/replicating-yearfrac-function-from-excel-in-python
+### https://lists.oasis-open.org/archives/office-formula/200806/msg00039.html
+### https://kalotay.com/SupportingDocumentation/BondOAS/daycounts.html
+### https://www.iotafinance.com/en/Date-Calculator.html
+### https://support.microsoft.com/en-us/office/yearfrac-function-3844141e-c76d-4143-82b6-208454ddc6a8#:~:text=Description,assign%20to%20a%20specific%20term.
+### https://stackoverflow.com/questions/43355292/replicating-yearfrac-function-from-excel-in-python
+### 30US/360 - 3.08611
+POST http://localhost:8080/YearFact/
+Content-Type: application/json
+
+{
+	"Basis": "30US/360",
+    "StartDt": "2022-02-28",
+    "EndDt": "2025-03-31"
+}
+### 30EU/360 - 3.08888
+POST http://localhost:8080/YearFact/
+Content-Type: application/json
+
+{
+	"Basis": "30EU/360",
+    "StartDt": "2022-02-28",
+    "EndDt": "2025-03-31"
+}
+### 365/365 - 3.087671
+POST http://localhost:8080/YearFact/
+Content-Type: application/json
+
+{
+	"Basis": "365/365",
+    "StartDt": "2022-02-28",
+    "EndDt": "2025-03-31"
+}
+### Actual/Actual - 3.085557
+POST http://localhost:8080/YearFact/
+Content-Type: application/json
+
+{
+	"Basis": "Actual/Actual",
+    "StartDt": "2022-02-28",
+    "EndDt": "2025-03-31"
+}
+### Actual/360 - 3.130555
+POST http://localhost:8080/YearFact/
+Content-Type: application/json
+
+{
+	"Basis": "Actual/360",
+    "StartDt": "2022-02-28",
+    "EndDt": "2025-03-31"
+}
+### Actual/365 - 3.087671
+POST http://localhost:8080/YearFact/
+Content-Type: application/json
+
+{
+	"Basis": "Actual/365",
+    "StartDt": "2022-02-28",
+    "EndDt": "2025-03-31"
+}
+### 365/365 - 3.087671
+POST http://localhost:8080/YearFact/
+Content-Type: application/json
+
+{
+	"Basis": "365/365",
+    "StartDt": "2022-02-28",
+    "EndDt": "2025-03-31"
 }
