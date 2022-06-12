@@ -100,24 +100,6 @@ Content-Type: application/json
 	}
 }
 
-### LoanCalculator
-POST http://localhost:8080/LoanCalculator/
-Content-Type: application/json
-
-{
-    "LoanDetails": {
-        "BillingCycle": "Monthly",
-        "FirstPaymentDt": "2020-03-01",
-        "AmtFinanced": 12000,
-        "Term": 20,
-        "Rate": 10,
-        "ContractDt": "2020-01-21"
-    },
-    "ConfigDetails": {
-        "DayCounting": "30/360"
-    }
-}
-
 ### Yearfraction
 ### https://stackoverflow.com/questions/43355292/replicating-yearfrac-function-from-excel-in-python
 ### https://lists.oasis-open.org/archives/office-formula/200806/msg00039.html
@@ -188,4 +170,22 @@ Content-Type: application/json
 	"Basis": "365/365",
     "StartDt": "2022-02-28",
     "EndDt": "2025-03-31"
+}
+
+### LoanCalculator
+POST http://localhost:8080/LoanCalculator/
+Content-Type: application/json
+
+{
+    "LoanDetails": {
+        "BillingCycle": "Monthly",
+        "FirstPaymentDt": "2020-03-01",
+        "AmtFinanced": 12000,
+        "Term": 20,
+        "Rate": 10,
+        "ContractDt": "2020-01-21"
+    },
+    "ConfigDetails": {
+        "DayCounting": "30/360"
+    }
 }
