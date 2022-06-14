@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <dmn:definitions xmlns:dmn="http://www.omg.org/spec/DMN/20180521/MODEL/" xmlns="https://kiegroup.org/dmn/_50317FCA-BAF9-4EC9-B5DD-0C0C98A4D1E8" xmlns:feel="http://www.omg.org/spec/DMN/20180521/FEEL/" xmlns:kie="http://www.drools.org/kie/dmn/1.2" xmlns:dmndi="http://www.omg.org/spec/DMN/20180521/DMNDI/" xmlns:di="http://www.omg.org/spec/DMN/20180521/DI/" xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" xmlns:included1="https://kiegroup.org/dmn/_3498EE08-87E2-4AB9-9594-9C345709D9D1" id="_8B3BFE7E-25C8-4DC8-9FDB-9675D566080A" name="LoanCalculator" typeLanguage="http://www.omg.org/spec/DMN/20180521/FEEL/" namespace="https://kiegroup.org/dmn/_50317FCA-BAF9-4EC9-B5DD-0C0C98A4D1E8">
   <dmn:extensionElements/>
-  <dmn:import id="_FA3BCC92-421E-4129-A367-C073C6CAC94B" name="YearFact" namespace="https://kiegroup.org/dmn/_3498EE08-87E2-4AB9-9594-9C345709D9D1" locationURI="YearFact.dmn" importType="http://www.omg.org/spec/DMN/20180521/MODEL/"/>
+  <dmn:import id="_9A74BCB5-0FF6-4C92-A22F-C36E8B2BD60F" name="YearFact" namespace="https://kiegroup.org/dmn/_3498EE08-87E2-4AB9-9594-9C345709D9D1" locationURI="YearFact.dmn" importType="http://www.omg.org/spec/DMN/20180521/MODEL/"/>
   <dmn:itemDefinition id="_5D1E2009-A317-47A6-8EE2-322DE7B84425" name="InstallmentType" isCollection="false">
     <dmn:typeRef>string</dmn:typeRef>
     <dmn:allowedValues kie:constraintType="enumeration" id="_B1CC9F7E-2849-46DE-B47E-FB88E0E7E0BF">
@@ -38,22 +38,438 @@
     <dmn:itemComponent id="_B360CBBC-1E15-4411-9037-226572498F47" name="InstallmentType" isCollection="false">
       <dmn:typeRef>InstallmentType</dmn:typeRef>
     </dmn:itemComponent>
-    <dmn:itemComponent id="_D107738C-D0B4-421A-A817-AF0A49499755" name="BillingCycle" isCollection="false">
+    <dmn:itemComponent id="_BBA2A81A-0424-437E-A12E-5D2F4171A219" name="BillingCycle" isCollection="false">
       <dmn:typeRef>BillingCycle</dmn:typeRef>
     </dmn:itemComponent>
   </dmn:itemDefinition>
+  <dmn:itemDefinition id="_E5386765-CDCC-4BAC-A3CC-C0141757F1B1" name="Lookup" isCollection="false">
+    <dmn:itemComponent id="_52836BBC-7C64-4984-8F69-C62BD61DD705" name="Duration" isCollection="false">
+      <dmn:typeRef>string</dmn:typeRef>
+    </dmn:itemComponent>
+    <dmn:itemComponent id="_AB49D9F2-360B-4B27-944F-BDA1466E4BF1" name="YearFactor" isCollection="false">
+      <dmn:typeRef>number</dmn:typeRef>
+    </dmn:itemComponent>
+  </dmn:itemDefinition>
+  <dmn:itemDefinition id="_30BEF172-59FD-42CB-A474-0A1DF77E6CAB" name="DerivedDetails" isCollection="false">
+    <dmn:itemComponent id="_51CBBECE-5A5B-49A3-8999-20B2EACD0E8D" name="LoanEndDt" isCollection="false">
+      <dmn:typeRef>date</dmn:typeRef>
+    </dmn:itemComponent>
+    <dmn:itemComponent id="_73548D0F-2A00-462B-943B-F2BCF55D4639" name="YearFactor" isCollection="false">
+      <dmn:typeRef>number</dmn:typeRef>
+    </dmn:itemComponent>
+    <dmn:itemComponent id="_EB88DB5E-10B8-4EF9-B521-1668092A7CCB" name="MinPmtAmt" isCollection="false">
+      <dmn:typeRef>number</dmn:typeRef>
+    </dmn:itemComponent>
+    <dmn:itemComponent id="_EBEBC76D-EB21-4FB4-A6E0-CC050A426294" name="MaxPmtAmt" isCollection="false">
+      <dmn:typeRef>number</dmn:typeRef>
+    </dmn:itemComponent>
+    <dmn:itemComponent id="_DF7082F0-3A67-480E-90E1-8108C0AA333F" name="PmtAmt" isCollection="false">
+      <dmn:typeRef>number</dmn:typeRef>
+    </dmn:itemComponent>
+    <dmn:itemComponent id="_37679859-6986-4C96-833C-96AC34044ABB" name="TotalOfPmts" isCollection="false">
+      <dmn:typeRef>number</dmn:typeRef>
+    </dmn:itemComponent>
+    <dmn:itemComponent id="_6930869A-5E93-4993-9F09-E8FF03CF4278" name="TotalInterest" isCollection="false">
+      <dmn:typeRef>number</dmn:typeRef>
+    </dmn:itemComponent>
+  </dmn:itemDefinition>
+  <dmn:itemDefinition id="_92C7031A-CF7A-488C-A619-E607D4E648E1" name="Schedule" isCollection="false">
+    <dmn:itemComponent id="_E7DE8595-21D6-4A5B-BFDE-6CA5163B6159" name="Sno" isCollection="false">
+      <dmn:typeRef>number</dmn:typeRef>
+    </dmn:itemComponent>
+    <dmn:itemComponent id="_98A31BAB-B88F-46EE-8655-02D06A3F0B97" name="PmtDt" isCollection="false">
+      <dmn:typeRef>date</dmn:typeRef>
+    </dmn:itemComponent>
+    <dmn:itemComponent id="_954E6A45-FDED-4CCD-82C6-15186B5D4DBC" name="DaysBetween" isCollection="false">
+      <dmn:typeRef>number</dmn:typeRef>
+    </dmn:itemComponent>
+    <dmn:itemComponent id="_6ADB21CA-2892-429A-9A59-2AEC6C6A7FC8" name="BeginningBalance" isCollection="false">
+      <dmn:typeRef>number</dmn:typeRef>
+    </dmn:itemComponent>
+    <dmn:itemComponent id="_4B8560C7-EBB7-44C8-9D01-1360144D9B19" name="PmtAmt" isCollection="false">
+      <dmn:typeRef>number</dmn:typeRef>
+    </dmn:itemComponent>
+    <dmn:itemComponent id="_828CFD2E-4AF4-407A-98D3-FFAD0549FCA7" name="InterestAmt" isCollection="false">
+      <dmn:typeRef>number</dmn:typeRef>
+    </dmn:itemComponent>
+    <dmn:itemComponent id="_937E7D46-64D6-482A-A39F-15BE50A112FE" name="Principal" isCollection="false">
+      <dmn:typeRef>number</dmn:typeRef>
+    </dmn:itemComponent>
+    <dmn:itemComponent id="_3BC8A4BE-FAC4-49F6-B753-5B1042A82F16" name="EndingBalance" isCollection="false">
+      <dmn:typeRef>number</dmn:typeRef>
+    </dmn:itemComponent>
+  </dmn:itemDefinition>
+  <dmn:itemDefinition id="_37A94ED0-656D-4A67-B475-56438A5A653B" name="ScheduleDetails" isCollection="true">
+    <dmn:typeRef>Schedule</dmn:typeRef>
+  </dmn:itemDefinition>
   <dmn:inputData id="_68853ADF-77EA-4433-8BC9-831FBCBC08A5" name="LoanDetails">
     <dmn:extensionElements/>
-    <dmn:variable id="_72D94245-DA23-4A4D-A05B-00F9B7F02605" name="LoanDetails" typeRef="LoanDetails"/>
+    <dmn:variable id="_72D94245-DA23-4A4D-A05B-00F9B7F02605" name="LoanDetails"/>
   </dmn:inputData>
   <dmn:inputData id="_150CEEB0-4C9D-41E1-955D-DE3D7B0F7D38" name="ProductDetails">
     <dmn:extensionElements/>
     <dmn:variable id="_56B9A3FF-9B62-4278-8D3C-57F790FA093A" name="ProductDetails"/>
   </dmn:inputData>
+  <dmn:decision id="_3CC91CF9-970A-49C1-A3FE-158899892637" name="Lookup">
+    <dmn:extensionElements/>
+    <dmn:variable id="_7C007782-8742-4AB2-86E4-B2930F9640E2" name="Lookup" typeRef="Lookup"/>
+    <dmn:informationRequirement id="_D782697D-CF4E-48EF-A61C-B2E05F27E65F">
+      <dmn:requiredInput href="#_150CEEB0-4C9D-41E1-955D-DE3D7B0F7D38"/>
+    </dmn:informationRequirement>
+    <dmn:decisionTable id="_3C0B85DD-968B-47A4-B351-71B55C50EF38" hitPolicy="UNIQUE" preferredOrientation="Rule-as-Row">
+      <dmn:input id="_84BA4058-3828-4B80-BAC7-1F589848F7D0">
+        <dmn:inputExpression id="_D15714FC-DF0B-4E76-9D04-BE6B26CE7A32" typeRef="string">
+          <dmn:text>ProductDetails.BillingCycle</dmn:text>
+        </dmn:inputExpression>
+      </dmn:input>
+      <dmn:output id="_1E747A63-DC5F-460D-9D13-8ADDA0BC8916" name="Duration" typeRef="years and months duration"/>
+      <dmn:output id="_8D8755E2-951E-4461-BE22-18066FCF6EBC" name="YearFactor" typeRef="number"/>
+      <dmn:annotation name="Desc"/>
+      <dmn:rule id="_B3AB0987-44E1-4FD0-87CB-6CCD8C061CC0">
+        <dmn:inputEntry id="_4CE8CA49-0F80-439B-8D93-23E6A1EFC7C6">
+          <dmn:text>"Weekly"</dmn:text>
+        </dmn:inputEntry>
+        <dmn:outputEntry id="_43848420-17C0-4052-B8F5-B403EDB40AF3">
+          <dmn:text>"P7D"</dmn:text>
+        </dmn:outputEntry>
+        <dmn:outputEntry id="_C3EE12F1-18E8-46EF-AA13-C35BBC548CF1">
+          <dmn:text>1/52</dmn:text>
+        </dmn:outputEntry>
+        <dmn:annotationEntry>
+          <dmn:text/>
+        </dmn:annotationEntry>
+      </dmn:rule>
+      <dmn:rule id="_81D9EF60-9C51-489C-A1F2-CAFF63ED6B57">
+        <dmn:inputEntry id="_6F4C27B8-4315-4706-B49C-03EA928F0E07">
+          <dmn:text>"BiWeekly"</dmn:text>
+        </dmn:inputEntry>
+        <dmn:outputEntry id="_8E0F8354-3E0C-411E-9ECD-3090E19905BA">
+          <dmn:text>"P14D"</dmn:text>
+        </dmn:outputEntry>
+        <dmn:outputEntry id="_E971AB36-27C3-4BBE-9A80-F7C5656433CE">
+          <dmn:text>2/52</dmn:text>
+        </dmn:outputEntry>
+        <dmn:annotationEntry>
+          <dmn:text/>
+        </dmn:annotationEntry>
+      </dmn:rule>
+      <dmn:rule id="_FAEA99CF-A7AB-490A-B27D-E896755FD7FE">
+        <dmn:inputEntry id="_1FEC05C1-8794-47F8-B572-F6EFFCAAD554">
+          <dmn:text>"Monthly"</dmn:text>
+        </dmn:inputEntry>
+        <dmn:outputEntry id="_0F65F4E9-0CF9-436A-81F7-808E83FB93E2">
+          <dmn:text>"P1M"</dmn:text>
+        </dmn:outputEntry>
+        <dmn:outputEntry id="_066D205B-8CE9-4FFA-A135-26D382C63257">
+          <dmn:text>1/12</dmn:text>
+        </dmn:outputEntry>
+        <dmn:annotationEntry>
+          <dmn:text/>
+        </dmn:annotationEntry>
+      </dmn:rule>
+      <dmn:rule id="_0C198C8E-BE2E-486D-8E63-2EF677156618">
+        <dmn:inputEntry id="_53F118B3-7CDC-49FA-B00C-4B5C3B49505F">
+          <dmn:text>"BiMonthly"</dmn:text>
+        </dmn:inputEntry>
+        <dmn:outputEntry id="_DBDF51A3-BA15-4FD1-93E4-FA60770799B9">
+          <dmn:text>"P2M"</dmn:text>
+        </dmn:outputEntry>
+        <dmn:outputEntry id="_2E881904-8520-4693-B871-8C6388963831">
+          <dmn:text>1/6</dmn:text>
+        </dmn:outputEntry>
+        <dmn:annotationEntry>
+          <dmn:text/>
+        </dmn:annotationEntry>
+      </dmn:rule>
+      <dmn:rule id="_16748DDC-33B1-4B49-9301-4B7AD093424D">
+        <dmn:inputEntry id="_0A5E1444-2772-4359-8433-D37C931128FC">
+          <dmn:text>"Quarterly"</dmn:text>
+        </dmn:inputEntry>
+        <dmn:outputEntry id="_29520A66-95A4-449D-BF3D-DC1F70AEDEBB">
+          <dmn:text>"P3M"</dmn:text>
+        </dmn:outputEntry>
+        <dmn:outputEntry id="_4EF3B197-5768-458F-948F-21E9606DC2D3">
+          <dmn:text>1/3</dmn:text>
+        </dmn:outputEntry>
+        <dmn:annotationEntry>
+          <dmn:text/>
+        </dmn:annotationEntry>
+      </dmn:rule>
+      <dmn:rule id="_0209F424-CCBD-4885-B9DE-87ED396D6E25">
+        <dmn:inputEntry id="_761AEB91-A7D2-4E37-8DBB-49688A7F8933">
+          <dmn:text>"SemiAnnually"</dmn:text>
+        </dmn:inputEntry>
+        <dmn:outputEntry id="_ED91EFC7-6407-4F3C-BF5F-4A4FF71D8534">
+          <dmn:text>"P6M"</dmn:text>
+        </dmn:outputEntry>
+        <dmn:outputEntry id="_9694DDDE-53C6-44A4-9E8D-78C3D03F540E">
+          <dmn:text>1/2</dmn:text>
+        </dmn:outputEntry>
+        <dmn:annotationEntry>
+          <dmn:text/>
+        </dmn:annotationEntry>
+      </dmn:rule>
+      <dmn:rule id="_E9AE374C-0B1E-4271-9E6D-37535571A28D">
+        <dmn:inputEntry id="_70300327-F314-4C5C-9735-F4C2AA7835CE">
+          <dmn:text>"Annually"</dmn:text>
+        </dmn:inputEntry>
+        <dmn:outputEntry id="_516E9D6D-EB93-4E54-9845-1B02D67EB68E">
+          <dmn:text>"P1Y"</dmn:text>
+        </dmn:outputEntry>
+        <dmn:outputEntry id="_04A80E95-7E92-4E67-850F-8BBF3E602F1A">
+          <dmn:text>1</dmn:text>
+        </dmn:outputEntry>
+        <dmn:annotationEntry>
+          <dmn:text/>
+        </dmn:annotationEntry>
+      </dmn:rule>
+      <dmn:rule id="_8D43E199-3E96-4933-9813-37114E0CB768">
+        <dmn:inputEntry id="_C131F853-793C-49C6-B6B7-A5D3A0288649">
+          <dmn:text>"Biennial"</dmn:text>
+        </dmn:inputEntry>
+        <dmn:outputEntry id="_8FE6AB1F-61CC-4E26-B53A-07B04321A6FF">
+          <dmn:text>"P2Y"</dmn:text>
+        </dmn:outputEntry>
+        <dmn:outputEntry id="_B2823171-7A7D-49AC-8076-C31153C275FA">
+          <dmn:text>2</dmn:text>
+        </dmn:outputEntry>
+        <dmn:annotationEntry>
+          <dmn:text/>
+        </dmn:annotationEntry>
+      </dmn:rule>
+      <dmn:rule id="_A0F2C072-13B4-4E16-90B0-0B8C9DF28E23">
+        <dmn:inputEntry id="_C73DD63D-C663-4A53-AF46-714B2DC4D6EE">
+          <dmn:text>"Triennial"</dmn:text>
+        </dmn:inputEntry>
+        <dmn:outputEntry id="_9E25D032-21CE-46D2-B6CB-0E4202F3915C">
+          <dmn:text>"P3Y"</dmn:text>
+        </dmn:outputEntry>
+        <dmn:outputEntry id="_22011F32-10F7-45D7-91D4-6B112C31ADFF">
+          <dmn:text>3</dmn:text>
+        </dmn:outputEntry>
+        <dmn:annotationEntry>
+          <dmn:text/>
+        </dmn:annotationEntry>
+      </dmn:rule>
+    </dmn:decisionTable>
+  </dmn:decision>
+  <dmn:decision id="_FA7D87E8-4DF7-4F6D-B578-190AA7EA5ED0" name="DerivedDetails">
+    <dmn:extensionElements/>
+    <dmn:variable id="_33DF3C88-590F-4300-B9D2-621ADFE5788C" name="DerivedDetails" typeRef="DerivedDetails"/>
+    <dmn:informationRequirement id="_BC5FE6AC-A604-4BB2-BC08-44E899BF4D80">
+      <dmn:requiredInput href="#_68853ADF-77EA-4433-8BC9-831FBCBC08A5"/>
+    </dmn:informationRequirement>
+    <dmn:informationRequirement id="_9946DE18-F972-49BB-9D37-1A66DB02FE7E">
+      <dmn:requiredDecision href="#_3CC91CF9-970A-49C1-A3FE-158899892637"/>
+    </dmn:informationRequirement>
+    <dmn:informationRequirement id="_8C878D12-903B-4017-951F-43927D560A30">
+      <dmn:requiredInput href="#_150CEEB0-4C9D-41E1-955D-DE3D7B0F7D38"/>
+    </dmn:informationRequirement>
+    <dmn:context id="_1A40E7DE-D60E-4772-A25C-DC40B40CB24C">
+      <dmn:contextEntry>
+        <dmn:variable id="_DE93EE62-268C-4ED8-AD39-BF352B6B2605" name="DerivedDetails" typeRef="DerivedDetails"/>
+        <dmn:context id="_1FAD0889-BD3C-4E30-A0E6-1EB68E1EB89D">
+          <dmn:contextEntry>
+            <dmn:variable id="_4D42000B-B668-4ABE-8A87-B6B5D43615E5" name="YearFactor" typeRef="number"/>
+            <dmn:literalExpression id="_499769FC-5B30-4E9D-BF5D-D0058CB5DFB8">
+              <dmn:text>Lookup.YearFactor</dmn:text>
+            </dmn:literalExpression>
+          </dmn:contextEntry>
+          <dmn:contextEntry>
+            <dmn:variable id="_29E22FC2-A968-48FC-AB0F-FEB6F6F10AF8" name="LoanEndDt" typeRef="date"/>
+            <dmn:literalExpression id="_60A193CC-2210-4F6A-928A-3806520876E5">
+              <dmn:text>date(LoanDetails.FirstPmtDt)+(duration(Lookup.Duration)*(LoanDetails.Term-1))</dmn:text>
+            </dmn:literalExpression>
+          </dmn:contextEntry>
+          <dmn:contextEntry>
+            <dmn:variable id="_CCA5CA41-7B66-46E5-A334-B5918BFDB1B2" name="MinPmtAmt" typeRef="number"/>
+            <dmn:literalExpression id="_6665AD2B-4E62-4CB3-B0BB-ED67A7D3619C">
+              <dmn:text>LoanDetails.AmtFinanced/LoanDetails.Term</dmn:text>
+            </dmn:literalExpression>
+          </dmn:contextEntry>
+          <dmn:contextEntry>
+            <dmn:variable id="_46A8CE65-9DDB-4F62-B11D-49941C510CE8" name="MaxPmtAmt" typeRef="number"/>
+            <dmn:literalExpression id="_361C7E22-DC0E-43E3-9878-44ABA1176223">
+              <dmn:text>MinPmtAmt+(LoanDetails.AmtFinanced*(LoanDetails.Rate/100)*YearFactor)</dmn:text>
+            </dmn:literalExpression>
+          </dmn:contextEntry>
+          <dmn:contextEntry>
+            <dmn:variable id="_33DF6A54-EB60-4037-852D-2A0C5F8952CC" name="PmtAmt" typeRef="number"/>
+            <dmn:literalExpression id="_2A9BDA81-E324-4FD5-B648-3C2EC8105E40">
+              <dmn:text>if ProductDetails.InstallmentType="EIP" then
+    (LoanDetails.AmtFinanced + (LoanDetails.AmtFinanced*(LoanDetails.Rate/100)*YearFactor*LoanDetails.Term))/LoanDetails.Term
+else
+    0</dmn:text>
+            </dmn:literalExpression>
+          </dmn:contextEntry>
+          <dmn:contextEntry>
+            <dmn:variable id="_68EC87DD-4FF5-4453-AF16-E4EC6E2E0015" name="TotalPmts" typeRef="number"/>
+            <dmn:literalExpression id="_F5EBB265-FD77-4F4B-AE61-5A80123F1CAA">
+              <dmn:text>if ProductDetails.InstallmentType="EIP" then
+    PmtAmt*LoanDetails.Term
+else
+    0</dmn:text>
+            </dmn:literalExpression>
+          </dmn:contextEntry>
+          <dmn:contextEntry>
+            <dmn:variable id="_31F73BE2-B2E4-4237-A08A-E0B5358C150D" name="TotalInterest" typeRef="number"/>
+            <dmn:literalExpression id="_806B1CAA-5113-448A-B62A-6BF75CE7F18F">
+              <dmn:text>if ProductDetails.InstallmentType="EIP" then
+    TotalPmts-LoanDetails.AmtFinanced
+else
+    0</dmn:text>
+            </dmn:literalExpression>
+          </dmn:contextEntry>
+        </dmn:context>
+      </dmn:contextEntry>
+      <dmn:contextEntry>
+        <dmn:literalExpression id="_827BCB58-CCBC-4304-AEF9-92F72908EA66">
+          <dmn:text>DerivedDetails</dmn:text>
+        </dmn:literalExpression>
+      </dmn:contextEntry>
+    </dmn:context>
+  </dmn:decision>
+  <dmn:decision id="_BB1C6639-9C99-4898-B464-B18C016D1962" name="PMT">
+    <dmn:extensionElements/>
+    <dmn:variable id="_985A962C-6571-4FFA-9103-3ACC507BA523" name="PMT" typeRef="YearFact.Input"/>
+    <dmn:context id="_731C7781-AA23-47F5-9EF4-E15B31D21ACB">
+      <dmn:contextEntry>
+        <dmn:variable id="_50303F82-34F6-4279-B786-47F1E972E2DA" name="Input" typeRef="YearFact.Input"/>
+        <dmn:context id="_6C179D07-ED2C-421E-AD32-1B4BFDDCD8AF">
+          <dmn:contextEntry>
+            <dmn:variable id="_6E42CCB7-7242-41DA-996A-E59E52D65953" name="StartDt" typeRef="date"/>
+            <dmn:literalExpression id="_B347AF58-C002-415D-ACD2-ABD4E1ACE28B">
+              <dmn:text>date(LoanDetails.ContractDt)</dmn:text>
+            </dmn:literalExpression>
+          </dmn:contextEntry>
+          <dmn:contextEntry>
+            <dmn:variable id="_12478D75-A215-45DA-8930-AA830AB776C8" name="EndDt" typeRef="date"/>
+            <dmn:literalExpression id="_C4BC60B6-720D-4E45-A267-BFD9338E6460">
+              <dmn:text>date(LoanDetails.FirstPmtDt)</dmn:text>
+            </dmn:literalExpression>
+          </dmn:contextEntry>
+        </dmn:context>
+      </dmn:contextEntry>
+      <dmn:contextEntry>
+        <dmn:variable id="_86D34256-CF6D-4661-AD4C-1109977DAE80" name="Basis" typeRef="YearFact.Basis"/>
+        <dmn:literalExpression id="_873FA280-F1B8-4066-8C05-E019F20B8E20">
+          <dmn:text>ProductDetails.Basis</dmn:text>
+        </dmn:literalExpression>
+      </dmn:contextEntry>
+      <dmn:contextEntry>
+        <dmn:variable id="_70B46792-FB74-40DB-8BD4-1ADCA05E6A58" name="DateDetails" typeRef="YearFact.DateDetails"/>
+        <dmn:literalExpression id="_CFB9900C-B27D-4B56-A647-8C74DCBA216B">
+          <dmn:text>YearFact.DateDetails(Input.StartDt, Input.EndDt)</dmn:text>
+        </dmn:literalExpression>
+      </dmn:contextEntry>
+      <dmn:contextEntry>
+        <dmn:variable id="_29D99254-618C-48A7-B04B-BC33A31E310A" name="Output" typeRef="number"/>
+        <dmn:literalExpression id="_80DAA08D-56AC-4434-9623-FD48192868D4">
+          <dmn:text>YearFact.DateDiff(Input,DateDetails,Basis)</dmn:text>
+        </dmn:literalExpression>
+      </dmn:contextEntry>
+      <dmn:contextEntry>
+        <dmn:literalExpression id="_F93E322A-73FF-45DA-A8BF-A7FB950E8E18">
+          <dmn:text>Output</dmn:text>
+        </dmn:literalExpression>
+      </dmn:contextEntry>
+    </dmn:context>
+  </dmn:decision>
+  <dmn:businessKnowledgeModel id="_5939AB11-ED10-4EA1-A921-25A82C8A4170" name="PMT">
+    <dmn:extensionElements/>
+    <dmn:variable id="_AA3DAD86-5C50-48D1-B4F5-105617AD3C3B" name="PMT" typeRef="number"/>
+    <dmn:encapsulatedLogic id="_109E2EBA-8653-4291-9AC1-29702058272B" kind="FEEL">
+      <dmn:formalParameter id="_17A01932-6460-42C5-8009-CF7E25CBB858" name="FromDt" typeRef="date"/>
+      <dmn:formalParameter id="_EB97A8CC-1A16-44CF-BF5E-60E1F3548D8A" name="ToDt" typeRef="date"/>
+      <dmn:formalParameter id="_633503C4-244B-4C7D-B03E-0CADC16BEBA9" name="Basis" typeRef="YearFact.Basis"/>
+      <dmn:formalParameter id="_F1CE1224-CD67-4DA9-A3A1-4EF4AEAC9F92" name="Rate" typeRef="number"/>
+      <dmn:formalParameter id="_1EAF8FCC-CAA7-4D00-B5CF-EF84B264E37F" name="Amt" typeRef="number"/>
+      <dmn:literalExpression id="_D34433C9-F154-41F8-A766-487DA550B495">
+        <dmn:text/>
+      </dmn:literalExpression>
+    </dmn:encapsulatedLogic>
+  </dmn:businessKnowledgeModel>
   <dmndi:DMNDI>
     <dmndi:DMNDiagram id="_E6759C82-DE6C-4C11-AE67-A8279158D018" name="DRG">
       <di:extension>
-        <kie:ComponentsWidthsExtension/>
+        <kie:ComponentsWidthsExtension>
+          <kie:ComponentWidths dmnElementRef="_3C0B85DD-968B-47A4-B351-71B55C50EF38">
+            <kie:width>50</kie:width>
+            <kie:width>178</kie:width>
+            <kie:width>156</kie:width>
+            <kie:width>100</kie:width>
+            <kie:width>100</kie:width>
+          </kie:ComponentWidths>
+          <kie:ComponentWidths dmnElementRef="_1A40E7DE-D60E-4772-A25C-DC40B40CB24C">
+            <kie:width>50</kie:width>
+            <kie:width>100</kie:width>
+            <kie:width>876</kie:width>
+          </kie:ComponentWidths>
+          <kie:ComponentWidths dmnElementRef="_1FAD0889-BD3C-4E30-A0E6-1EB68E1EB89D">
+            <kie:width>50</kie:width>
+            <kie:width>144</kie:width>
+            <kie:width>662</kie:width>
+          </kie:ComponentWidths>
+          <kie:ComponentWidths dmnElementRef="_499769FC-5B30-4E9D-BF5D-D0058CB5DFB8">
+            <kie:width>662</kie:width>
+          </kie:ComponentWidths>
+          <kie:ComponentWidths dmnElementRef="_60A193CC-2210-4F6A-928A-3806520876E5">
+            <kie:width>662</kie:width>
+          </kie:ComponentWidths>
+          <kie:ComponentWidths dmnElementRef="_6665AD2B-4E62-4CB3-B0BB-ED67A7D3619C">
+            <kie:width>662</kie:width>
+          </kie:ComponentWidths>
+          <kie:ComponentWidths dmnElementRef="_361C7E22-DC0E-43E3-9878-44ABA1176223">
+            <kie:width>662</kie:width>
+          </kie:ComponentWidths>
+          <kie:ComponentWidths dmnElementRef="_2A9BDA81-E324-4FD5-B648-3C2EC8105E40">
+            <kie:width>662</kie:width>
+          </kie:ComponentWidths>
+          <kie:ComponentWidths dmnElementRef="_F5EBB265-FD77-4F4B-AE61-5A80123F1CAA">
+            <kie:width>662</kie:width>
+          </kie:ComponentWidths>
+          <kie:ComponentWidths dmnElementRef="_806B1CAA-5113-448A-B62A-6BF75CE7F18F">
+            <kie:width>662</kie:width>
+          </kie:ComponentWidths>
+          <kie:ComponentWidths dmnElementRef="_827BCB58-CCBC-4304-AEF9-92F72908EA66">
+            <kie:width>876</kie:width>
+          </kie:ComponentWidths>
+          <kie:ComponentWidths dmnElementRef="_731C7781-AA23-47F5-9EF4-E15B31D21ACB">
+            <kie:width>50</kie:width>
+            <kie:width>234</kie:width>
+            <kie:width>540</kie:width>
+          </kie:ComponentWidths>
+          <kie:ComponentWidths dmnElementRef="_6C179D07-ED2C-421E-AD32-1B4BFDDCD8AF">
+            <kie:width>50</kie:width>
+            <kie:width>100</kie:width>
+            <kie:width>370</kie:width>
+          </kie:ComponentWidths>
+          <kie:ComponentWidths dmnElementRef="_B347AF58-C002-415D-ACD2-ABD4E1ACE28B">
+            <kie:width>370</kie:width>
+          </kie:ComponentWidths>
+          <kie:ComponentWidths dmnElementRef="_C4BC60B6-720D-4E45-A267-BFD9338E6460">
+            <kie:width>370</kie:width>
+          </kie:ComponentWidths>
+          <kie:ComponentWidths dmnElementRef="_873FA280-F1B8-4066-8C05-E019F20B8E20">
+            <kie:width>540</kie:width>
+          </kie:ComponentWidths>
+          <kie:ComponentWidths dmnElementRef="_CFB9900C-B27D-4B56-A647-8C74DCBA216B">
+            <kie:width>540</kie:width>
+          </kie:ComponentWidths>
+          <kie:ComponentWidths dmnElementRef="_80DAA08D-56AC-4434-9623-FD48192868D4">
+            <kie:width>540</kie:width>
+          </kie:ComponentWidths>
+          <kie:ComponentWidths dmnElementRef="_F93E322A-73FF-45DA-A8BF-A7FB950E8E18">
+            <kie:width>540</kie:width>
+          </kie:ComponentWidths>
+          <kie:ComponentWidths dmnElementRef="_D34433C9-F154-41F8-A766-487DA550B495">
+            <kie:width>296</kie:width>
+          </kie:ComponentWidths>
+          <kie:ComponentWidths dmnElementRef="_109E2EBA-8653-4291-9AC1-29702058272B">
+            <kie:width>50</kie:width>
+            <kie:width>296</kie:width>
+          </kie:ComponentWidths>
+        </kie:ComponentsWidthsExtension>
       </di:extension>
       <dmndi:DMNShape id="dmnshape-drg-_68853ADF-77EA-4433-8BC9-831FBCBC08A5" dmnElementRef="_68853ADF-77EA-4433-8BC9-831FBCBC08A5" isCollapsed="false">
         <dmndi:DMNStyle>
@@ -61,7 +477,7 @@
           <dmndi:StrokeColor red="0" green="0" blue="0"/>
           <dmndi:FontColor red="0" green="0" blue="0"/>
         </dmndi:DMNStyle>
-        <dc:Bounds x="320" y="233" width="100" height="50"/>
+        <dc:Bounds x="329.5981308411215" y="192" width="100" height="50"/>
         <dmndi:DMNLabel/>
       </dmndi:DMNShape>
       <dmndi:DMNShape id="dmnshape-drg-_150CEEB0-4C9D-41E1-955D-DE3D7B0F7D38" dmnElementRef="_150CEEB0-4C9D-41E1-955D-DE3D7B0F7D38" isCollapsed="false">
@@ -70,9 +486,72 @@
           <dmndi:StrokeColor red="0" green="0" blue="0"/>
           <dmndi:FontColor red="0" green="0" blue="0"/>
         </dmndi:DMNStyle>
-        <dc:Bounds x="463" y="233" width="109" height="50"/>
+        <dc:Bounds x="486.47196261682245" y="309" width="109" height="50"/>
         <dmndi:DMNLabel/>
       </dmndi:DMNShape>
+      <dmndi:DMNShape id="dmnshape-drg-_3CC91CF9-970A-49C1-A3FE-158899892637" dmnElementRef="_3CC91CF9-970A-49C1-A3FE-158899892637" isCollapsed="false">
+        <dmndi:DMNStyle>
+          <dmndi:FillColor red="255" green="255" blue="255"/>
+          <dmndi:StrokeColor red="0" green="0" blue="0"/>
+          <dmndi:FontColor red="0" green="0" blue="0"/>
+        </dmndi:DMNStyle>
+        <dc:Bounds x="624" y="244" width="100" height="50"/>
+        <dmndi:DMNLabel/>
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="dmnshape-drg-_FA7D87E8-4DF7-4F6D-B578-190AA7EA5ED0" dmnElementRef="_FA7D87E8-4DF7-4F6D-B578-190AA7EA5ED0" isCollapsed="false">
+        <dmndi:DMNStyle>
+          <dmndi:FillColor red="255" green="255" blue="255"/>
+          <dmndi:StrokeColor red="0" green="0" blue="0"/>
+          <dmndi:FontColor red="0" green="0" blue="0"/>
+        </dmndi:DMNStyle>
+        <dc:Bounds x="482" y="193" width="115" height="50"/>
+        <dmndi:DMNLabel/>
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="dmnshape-drg-_BB1C6639-9C99-4898-B464-B18C016D1962" dmnElementRef="_BB1C6639-9C99-4898-B464-B18C016D1962" isCollapsed="false">
+        <dmndi:DMNStyle>
+          <dmndi:FillColor red="255" green="255" blue="255"/>
+          <dmndi:StrokeColor red="0" green="0" blue="0"/>
+          <dmndi:FontColor red="0" green="0" blue="0"/>
+        </dmndi:DMNStyle>
+        <dc:Bounds x="89" y="229" width="100" height="50"/>
+        <dmndi:DMNLabel/>
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="dmnshape-drg-_62EE318C-69F4-48D9-8B31-267C2AAD6741" dmnElementRef="included1:_62EE318C-69F4-48D9-8B31-267C2AAD6741" isCollapsed="false">
+        <dmndi:DMNStyle>
+          <dmndi:FillColor red="255" green="255" blue="255"/>
+          <dmndi:StrokeColor red="0" green="0" blue="0"/>
+          <dmndi:FontColor red="0" green="0" blue="0"/>
+        </dmndi:DMNStyle>
+        <dc:Bounds x="569" y="8" width="122" height="50"/>
+        <dmndi:DMNLabel/>
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="dmnshape-drg-_5939AB11-ED10-4EA1-A921-25A82C8A4170" dmnElementRef="_5939AB11-ED10-4EA1-A921-25A82C8A4170" isCollapsed="false">
+        <dmndi:DMNStyle>
+          <dmndi:FillColor red="255" green="255" blue="255"/>
+          <dmndi:StrokeColor red="0" green="0" blue="0"/>
+          <dmndi:FontColor red="0" green="0" blue="0"/>
+        </dmndi:DMNStyle>
+        <dc:Bounds x="580" y="106" width="100" height="50"/>
+        <dmndi:DMNLabel/>
+      </dmndi:DMNShape>
+      <dmndi:DMNEdge id="dmnedge-drg-_D782697D-CF4E-48EF-A61C-B2E05F27E65F" dmnElementRef="_D782697D-CF4E-48EF-A61C-B2E05F27E65F">
+        <di:waypoint x="595.4719626168223" y="334"/>
+        <di:waypoint x="674" y="335"/>
+        <di:waypoint x="674" y="294"/>
+      </dmndi:DMNEdge>
+      <dmndi:DMNEdge id="dmnedge-drg-_BC5FE6AC-A604-4BB2-BC08-44E899BF4D80" dmnElementRef="_BC5FE6AC-A604-4BB2-BC08-44E899BF4D80">
+        <di:waypoint x="429.5981308411215" y="217"/>
+        <di:waypoint x="482" y="218"/>
+      </dmndi:DMNEdge>
+      <dmndi:DMNEdge id="dmnedge-drg-_9946DE18-F972-49BB-9D37-1A66DB02FE7E" dmnElementRef="_9946DE18-F972-49BB-9D37-1A66DB02FE7E">
+        <di:waypoint x="674" y="244"/>
+        <di:waypoint x="674" y="218"/>
+        <di:waypoint x="597" y="218"/>
+      </dmndi:DMNEdge>
+      <dmndi:DMNEdge id="dmnedge-drg-_8C878D12-903B-4017-951F-43927D560A30" dmnElementRef="_8C878D12-903B-4017-951F-43927D560A30">
+        <di:waypoint x="540.9719626168223" y="309"/>
+        <di:waypoint x="539.5" y="243"/>
+      </dmndi:DMNEdge>
     </dmndi:DMNDiagram>
   </dmndi:DMNDI>
 </dmn:definitions>
