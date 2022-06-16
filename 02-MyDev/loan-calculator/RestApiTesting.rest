@@ -187,7 +187,7 @@ Content-Type: application/json
     "ProductDetails": {
         "BillingCycle": "Monthly",
         "Basis": "30US/360",
-        "InstallmentType":"EIP"
+        "InstallmentType":"EPI"
     }
 }
 

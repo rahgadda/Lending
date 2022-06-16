@@ -302,7 +302,7 @@
       <dmn:contextEntry>
         <dmn:variable id="_51183459-7302-4D9B-92A4-6E8ECB9B82E8" name="MinSchedule" typeRef="ScheduleDetails"/>
         <dmn:literalExpression id="_1E1A95B0-3757-4A7D-8E1A-CEBFA84C88ED">
-          <dmn:text>ScheduleDetails(1,LoanDetails.FirstPmtDt,LoanDetails.AmtFinanced,MinPmtAmt,InterestAmt,0,date(LoanDetails.ContractDt),ProductDetails.Basis,ProductDetails.InstallmentType,LoanDetails.Rate,LoanDetails.Term,[],Lookup.Duration)</dmn:text>
+          <dmn:text>ScheduleDetails(1,LoanDetails.FirstPmtDt,LoanDetails.AmtFinanced,MinPmtAmt,InterestAmt/LoanDetails.Term,0,date(LoanDetails.ContractDt),ProductDetails.Basis,ProductDetails.InstallmentType,LoanDetails.Rate,LoanDetails.Term,[],Lookup.Duration)</dmn:text>
         </dmn:literalExpression>
       </dmn:contextEntry>
       <dmn:contextEntry>
@@ -314,7 +314,7 @@
       <dmn:contextEntry>
         <dmn:variable id="_5D46B4CB-BD1C-4A87-AA92-834A8C4F1D83" name="MaxSchedule" typeRef="ScheduleDetails"/>
         <dmn:literalExpression id="_560CAEDE-0B97-4934-88FD-D2065A4B488D">
-          <dmn:text>ScheduleDetails(1,LoanDetails.FirstPmtDt,LoanDetails.AmtFinanced,MaxPmtAmt,InterestAmt,0,date(LoanDetails.ContractDt),ProductDetails.Basis,ProductDetails.InstallmentType,LoanDetails.Rate,LoanDetails.Term,[],Lookup.Duration)</dmn:text>
+          <dmn:text>ScheduleDetails(1,LoanDetails.FirstPmtDt,LoanDetails.AmtFinanced,MaxPmtAmt,InterestAmt/LoanDetails.Term,0,date(LoanDetails.ContractDt),ProductDetails.Basis,ProductDetails.InstallmentType,LoanDetails.Rate,LoanDetails.Term,[],Lookup.Duration)</dmn:text>
         </dmn:literalExpression>
       </dmn:contextEntry>
       <dmn:contextEntry>
@@ -332,7 +332,7 @@
       <dmn:contextEntry>
         <dmn:variable id="_79CA3832-E155-4BED-AEFC-6652DB363AE8" name="ActualSchedule" typeRef="ScheduleDetails"/>
         <dmn:literalExpression id="_C4DA47AE-F426-4920-8BDF-D18D1B1F4F28">
-          <dmn:text>ScheduleDetails(1,LoanDetails.FirstPmtDt,LoanDetails.AmtFinanced,ActualPmtAmt,InterestAmt,0,date(LoanDetails.ContractDt),ProductDetails.Basis,ProductDetails.InstallmentType,LoanDetails.Rate,LoanDetails.Term,[],Lookup.Duration)</dmn:text>
+          <dmn:text>ScheduleDetails(1,LoanDetails.FirstPmtDt,LoanDetails.AmtFinanced,ActualPmtAmt,InterestAmt/LoanDetails.Term,0,date(LoanDetails.ContractDt),ProductDetails.Basis,ProductDetails.InstallmentType,LoanDetails.Rate,LoanDetails.Term,[],Lookup.Duration)</dmn:text>
         </dmn:literalExpression>
       </dmn:contextEntry>
       <dmn:contextEntry>
