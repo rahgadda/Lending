@@ -172,7 +172,7 @@ Content-Type: application/json
     "EndDt": "2025-03-31"
 }
 
-### LoanCalculator
+### LoanCalculator-EPI
 POST http://localhost:8080/LoanCalculator/
 Content-Type: application/json
 
@@ -187,6 +187,25 @@ Content-Type: application/json
     "ProductDetails": {
         "BillingCycle": "Monthly",
         "Basis": "30US/360",
-        "InstallmentType":"EPI"
+        "InstallmentType":"EIP"
+    }
+}
+
+### LoanCalculator-EIP
+POST http://localhost:8080/LoanCalculator/
+Content-Type: application/json
+
+{
+    "LoanDetails": {
+        "AmtFinanced": 12000,
+        "Term": 20,
+        "Rate": 10,
+        "ContractDt": "2020-01-21",
+        "FirstPmtDt": "2020-03-01"
+    },
+    "ProductDetails": {
+        "BillingCycle": "Monthly",
+        "Basis": "30US/360",
+        "InstallmentType":"EIP"
     }
 }

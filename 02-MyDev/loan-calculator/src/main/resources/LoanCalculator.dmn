@@ -72,6 +72,9 @@
     <dmn:itemComponent id="_6930869A-5E93-4993-9F09-E8FF03CF4278" name="TotalInterest" isCollection="false">
       <dmn:typeRef>number</dmn:typeRef>
     </dmn:itemComponent>
+    <dmn:itemComponent id="_A5F6068E-9D03-49D1-B42D-7BA1864FF956" name="ScheduleRecords" isCollection="false">
+      <dmn:typeRef>ScheduleDetails</dmn:typeRef>
+    </dmn:itemComponent>
   </dmn:itemDefinition>
   <dmn:itemDefinition id="_92C7031A-CF7A-488C-A619-E607D4E648E1" name="Schedule" isCollection="false">
     <dmn:itemComponent id="_E7DE8595-21D6-4A5B-BFDE-6CA5163B6159" name="Sno" isCollection="false">
@@ -297,62 +300,6 @@
         </dmn:literalExpression>
       </dmn:contextEntry>
       <dmn:contextEntry>
-        <dmn:variable id="_DE93EE62-268C-4ED8-AD39-BF352B6B2605" name="DerivedDetails" typeRef="DerivedDetails"/>
-        <dmn:context id="_1FAD0889-BD3C-4E30-A0E6-1EB68E1EB89D">
-          <dmn:contextEntry>
-            <dmn:variable id="_4D42000B-B668-4ABE-8A87-B6B5D43615E5" name="YearFactor" typeRef="number"/>
-            <dmn:literalExpression id="_499769FC-5B30-4E9D-BF5D-D0058CB5DFB8">
-              <dmn:text>Lookup.YearFactor</dmn:text>
-            </dmn:literalExpression>
-          </dmn:contextEntry>
-          <dmn:contextEntry>
-            <dmn:variable id="_29E22FC2-A968-48FC-AB0F-FEB6F6F10AF8" name="LoanEndDt" typeRef="date"/>
-            <dmn:literalExpression id="_60A193CC-2210-4F6A-928A-3806520876E5">
-              <dmn:text>LoanEndDt</dmn:text>
-            </dmn:literalExpression>
-          </dmn:contextEntry>
-          <dmn:contextEntry>
-            <dmn:variable id="_CCA5CA41-7B66-46E5-A334-B5918BFDB1B2" name="MinPmtAmt" typeRef="number"/>
-            <dmn:literalExpression id="_6665AD2B-4E62-4CB3-B0BB-ED67A7D3619C">
-              <dmn:text>MinPmtAmt</dmn:text>
-            </dmn:literalExpression>
-          </dmn:contextEntry>
-          <dmn:contextEntry>
-            <dmn:variable id="_46A8CE65-9DDB-4F62-B11D-49941C510CE8" name="MaxPmtAmt" typeRef="number"/>
-            <dmn:literalExpression id="_361C7E22-DC0E-43E3-9878-44ABA1176223">
-              <dmn:text>MaxPmtAmt</dmn:text>
-            </dmn:literalExpression>
-          </dmn:contextEntry>
-          <dmn:contextEntry>
-            <dmn:variable id="_33DF6A54-EB60-4037-852D-2A0C5F8952CC" name="PmtAmt" typeRef="number"/>
-            <dmn:literalExpression id="_2A9BDA81-E324-4FD5-B648-3C2EC8105E40">
-              <dmn:text>if ProductDetails.InstallmentType="EIP" then
-   (LoanDetails.AmtFinanced+InterestAmt)/LoanDetails.Term
-else
-    0</dmn:text>
-            </dmn:literalExpression>
-          </dmn:contextEntry>
-          <dmn:contextEntry>
-            <dmn:variable id="_68EC87DD-4FF5-4453-AF16-E4EC6E2E0015" name="TotalPmts" typeRef="number"/>
-            <dmn:literalExpression id="_F5EBB265-FD77-4F4B-AE61-5A80123F1CAA">
-              <dmn:text>if ProductDetails.InstallmentType="EIP" then
-    PmtAmt*LoanDetails.Term
-else
-    0</dmn:text>
-            </dmn:literalExpression>
-          </dmn:contextEntry>
-          <dmn:contextEntry>
-            <dmn:variable id="_31F73BE2-B2E4-4237-A08A-E0B5358C150D" name="TotalInterest" typeRef="number"/>
-            <dmn:literalExpression id="_806B1CAA-5113-448A-B62A-6BF75CE7F18F">
-              <dmn:text>if ProductDetails.InstallmentType="EIP" then
-    TotalPmts-LoanDetails.AmtFinanced
-else
-    0</dmn:text>
-            </dmn:literalExpression>
-          </dmn:contextEntry>
-        </dmn:context>
-      </dmn:contextEntry>
-      <dmn:contextEntry>
         <dmn:variable id="_51183459-7302-4D9B-92A4-6E8ECB9B82E8" name="MinSchedule" typeRef="ScheduleDetails"/>
         <dmn:literalExpression id="_1E1A95B0-3757-4A7D-8E1A-CEBFA84C88ED">
           <dmn:text>ScheduleDetails(1,LoanDetails.FirstPmtDt,LoanDetails.AmtFinanced,MinPmtAmt,InterestAmt,0,date(LoanDetails.ContractDt),ProductDetails.Basis,ProductDetails.InstallmentType,LoanDetails.Rate,LoanDetails.Term,[],Lookup.Duration)</dmn:text>
@@ -389,8 +336,67 @@ else
         </dmn:literalExpression>
       </dmn:contextEntry>
       <dmn:contextEntry>
+        <dmn:variable id="_DE93EE62-268C-4ED8-AD39-BF352B6B2605" name="DerivedDetails" typeRef="DerivedDetails"/>
+        <dmn:context id="_1FAD0889-BD3C-4E30-A0E6-1EB68E1EB89D">
+          <dmn:contextEntry>
+            <dmn:variable id="_4D42000B-B668-4ABE-8A87-B6B5D43615E5" name="YearFactor" typeRef="number"/>
+            <dmn:literalExpression id="_499769FC-5B30-4E9D-BF5D-D0058CB5DFB8">
+              <dmn:text>Lookup.YearFactor</dmn:text>
+            </dmn:literalExpression>
+          </dmn:contextEntry>
+          <dmn:contextEntry>
+            <dmn:variable id="_29E22FC2-A968-48FC-AB0F-FEB6F6F10AF8" name="LoanEndDt" typeRef="date"/>
+            <dmn:literalExpression id="_60A193CC-2210-4F6A-928A-3806520876E5">
+              <dmn:text>LoanEndDt</dmn:text>
+            </dmn:literalExpression>
+          </dmn:contextEntry>
+          <dmn:contextEntry>
+            <dmn:variable id="_CCA5CA41-7B66-46E5-A334-B5918BFDB1B2" name="MinPmtAmt" typeRef="number"/>
+            <dmn:literalExpression id="_6665AD2B-4E62-4CB3-B0BB-ED67A7D3619C">
+              <dmn:text>MinPmtAmt</dmn:text>
+            </dmn:literalExpression>
+          </dmn:contextEntry>
+          <dmn:contextEntry>
+            <dmn:variable id="_46A8CE65-9DDB-4F62-B11D-49941C510CE8" name="MaxPmtAmt" typeRef="number"/>
+            <dmn:literalExpression id="_361C7E22-DC0E-43E3-9878-44ABA1176223">
+              <dmn:text>MaxPmtAmt</dmn:text>
+            </dmn:literalExpression>
+          </dmn:contextEntry>
+          <dmn:contextEntry>
+            <dmn:variable id="_B421146A-EC48-41F4-9F2C-8C221F79E67F" name="PmtAmt" typeRef="number"/>
+            <dmn:literalExpression id="_85FB2A62-0512-48E3-94A8-FA9C60635508">
+              <dmn:text>if ProductDetails.InstallmentType="EIP" then
+   (LoanDetails.AmtFinanced+InterestAmt)/LoanDetails.Term
+else
+    ActualPmtAmt</dmn:text>
+            </dmn:literalExpression>
+          </dmn:contextEntry>
+          <dmn:contextEntry>
+            <dmn:variable id="_CF7DF6A4-A96A-49A5-8221-BB87C2EFD6B6" name="TotalOfPmts" typeRef="number"/>
+            <dmn:literalExpression id="_88F5ED1B-520A-432B-BF8F-8C6C223588AF">
+              <dmn:text>if ProductDetails.InstallmentType="EIP" then
+    PmtAmt*LoanDetails.Term
+else
+    ActualPmtAmt*LoanDetails.Term</dmn:text>
+            </dmn:literalExpression>
+          </dmn:contextEntry>
+          <dmn:contextEntry>
+            <dmn:variable id="_A400B90D-9732-43A7-B41D-E6491231929F" name="TotalInterest" typeRef="number"/>
+            <dmn:literalExpression id="_2627D03F-CD77-42F0-B74B-E66A3F8E787A">
+              <dmn:text>TotalOfPmts-LoanDetails.AmtFinanced</dmn:text>
+            </dmn:literalExpression>
+          </dmn:contextEntry>
+          <dmn:contextEntry>
+            <dmn:variable id="_68D8B25E-C52D-441D-8B98-FB9B7BA8CDE6" name="ScheduleRecords" typeRef="ScheduleDetails"/>
+            <dmn:literalExpression id="_54C883AA-A215-4E41-90F6-08B5461399A7">
+              <dmn:text>ActualSchedule</dmn:text>
+            </dmn:literalExpression>
+          </dmn:contextEntry>
+        </dmn:context>
+      </dmn:contextEntry>
+      <dmn:contextEntry>
         <dmn:literalExpression id="_827BCB58-CCBC-4304-AEF9-92F72908EA66">
-          <dmn:text>ActualSchedule</dmn:text>
+          <dmn:text>DerivedDetails</dmn:text>
         </dmn:literalExpression>
       </dmn:contextEntry>
     </dmn:context>
@@ -601,32 +607,6 @@ else
           <kie:ComponentWidths dmnElementRef="_C362D66B-83FE-46E4-A450-3ABC61F7EB6C">
             <kie:width>876</kie:width>
           </kie:ComponentWidths>
-          <kie:ComponentWidths dmnElementRef="_1FAD0889-BD3C-4E30-A0E6-1EB68E1EB89D">
-            <kie:width>50</kie:width>
-            <kie:width>144</kie:width>
-            <kie:width>662</kie:width>
-          </kie:ComponentWidths>
-          <kie:ComponentWidths dmnElementRef="_499769FC-5B30-4E9D-BF5D-D0058CB5DFB8">
-            <kie:width>662</kie:width>
-          </kie:ComponentWidths>
-          <kie:ComponentWidths dmnElementRef="_60A193CC-2210-4F6A-928A-3806520876E5">
-            <kie:width>662</kie:width>
-          </kie:ComponentWidths>
-          <kie:ComponentWidths dmnElementRef="_6665AD2B-4E62-4CB3-B0BB-ED67A7D3619C">
-            <kie:width>662</kie:width>
-          </kie:ComponentWidths>
-          <kie:ComponentWidths dmnElementRef="_361C7E22-DC0E-43E3-9878-44ABA1176223">
-            <kie:width>662</kie:width>
-          </kie:ComponentWidths>
-          <kie:ComponentWidths dmnElementRef="_2A9BDA81-E324-4FD5-B648-3C2EC8105E40">
-            <kie:width>662</kie:width>
-          </kie:ComponentWidths>
-          <kie:ComponentWidths dmnElementRef="_F5EBB265-FD77-4F4B-AE61-5A80123F1CAA">
-            <kie:width>662</kie:width>
-          </kie:ComponentWidths>
-          <kie:ComponentWidths dmnElementRef="_806B1CAA-5113-448A-B62A-6BF75CE7F18F">
-            <kie:width>662</kie:width>
-          </kie:ComponentWidths>
           <kie:ComponentWidths dmnElementRef="_1E1A95B0-3757-4A7D-8E1A-CEBFA84C88ED">
             <kie:width>876</kie:width>
           </kie:ComponentWidths>
@@ -644,6 +624,35 @@ else
           </kie:ComponentWidths>
           <kie:ComponentWidths dmnElementRef="_C4DA47AE-F426-4920-8BDF-D18D1B1F4F28">
             <kie:width>876</kie:width>
+          </kie:ComponentWidths>
+          <kie:ComponentWidths dmnElementRef="_1FAD0889-BD3C-4E30-A0E6-1EB68E1EB89D">
+            <kie:width>50</kie:width>
+            <kie:width>144</kie:width>
+            <kie:width>662</kie:width>
+          </kie:ComponentWidths>
+          <kie:ComponentWidths dmnElementRef="_499769FC-5B30-4E9D-BF5D-D0058CB5DFB8">
+            <kie:width>662</kie:width>
+          </kie:ComponentWidths>
+          <kie:ComponentWidths dmnElementRef="_60A193CC-2210-4F6A-928A-3806520876E5">
+            <kie:width>662</kie:width>
+          </kie:ComponentWidths>
+          <kie:ComponentWidths dmnElementRef="_6665AD2B-4E62-4CB3-B0BB-ED67A7D3619C">
+            <kie:width>662</kie:width>
+          </kie:ComponentWidths>
+          <kie:ComponentWidths dmnElementRef="_361C7E22-DC0E-43E3-9878-44ABA1176223">
+            <kie:width>662</kie:width>
+          </kie:ComponentWidths>
+          <kie:ComponentWidths dmnElementRef="_85FB2A62-0512-48E3-94A8-FA9C60635508">
+            <kie:width>662</kie:width>
+          </kie:ComponentWidths>
+          <kie:ComponentWidths dmnElementRef="_88F5ED1B-520A-432B-BF8F-8C6C223588AF">
+            <kie:width>662</kie:width>
+          </kie:ComponentWidths>
+          <kie:ComponentWidths dmnElementRef="_2627D03F-CD77-42F0-B74B-E66A3F8E787A">
+            <kie:width>662</kie:width>
+          </kie:ComponentWidths>
+          <kie:ComponentWidths dmnElementRef="_54C883AA-A215-4E41-90F6-08B5461399A7">
+            <kie:width>662</kie:width>
           </kie:ComponentWidths>
           <kie:ComponentWidths dmnElementRef="_827BCB58-CCBC-4304-AEF9-92F72908EA66">
             <kie:width>876</kie:width>
