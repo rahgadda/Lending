@@ -162,7 +162,7 @@ Content-Type: application/json
     "StartDt": "2022-02-28",
     "EndDt": "2025-03-31"
 }
-### 365/365 - 3.087671
+### 365/365 - 3.084931
 POST http://localhost:8080/YearFact/
 Content-Type: application/json
 
@@ -179,7 +179,7 @@ Content-Type: application/json
 {
     "LoanDetails": {
         "AmtFinanced": 12000,
-        "Term": 1,
+        "Term": 20,
         "Rate": 10,
         "ContractDt": "2020-01-21",
         "FirstPmtDt": "2020-03-01"
@@ -187,6 +187,6 @@ Content-Type: application/json
     "ProductDetails": {
         "BillingCycle": "Monthly",
         "Basis": "30US/360",
-        "InstallmentType":"EIP"
+        "InstallmentType":"EPI"
     }
 }
